@@ -52,7 +52,7 @@
         android:layout_marginBottom="32dp" />
 
     <Button
-        android:id="@+id/로그인"
+        android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/button_white"
@@ -63,7 +63,7 @@
         android:layout_marginBottom="32dp"/>
 
     <Button
-        android:id="@+id/회원가입"
+        android:id="@+id/signup_btn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/button_white"
