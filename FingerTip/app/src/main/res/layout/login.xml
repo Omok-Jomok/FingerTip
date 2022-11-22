@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/purple"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    android:paddingTop="128dp"
+    android:paddingBottom="16dp">
+
+
+    <TextView
+        android:id="@+id/Finger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="FINGER\nTIP"
+        android:textColor="@color/white"
+        android:textSize="80dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="16dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:hint="아이디"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15pt"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="16dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15pt"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/로그인"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/button_white"
+        android:text="로그인"
+        android:textColor="@color/purple"
+        android:textSize="15pt"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/회원가입"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/button_white"
+        android:text="회원가입"
+        android:textColor="@color/purple"
+        android:textSize="15pt"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
