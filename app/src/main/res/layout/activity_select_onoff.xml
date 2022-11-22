@@ -18,7 +18,7 @@
         android:textSize="40dp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="0dp"/>
 
     <TextView
         android:id="@+id/shop_select"
@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text=""
-        android:textSize="60dp"
+        android:text="이민우 님"
+        android:textSize="55dp"
         android:textColor="@color/purple"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"/>
@@ -35,14 +35,17 @@
     <Button
         android:id="@+id/online"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="200dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/button_purple"
+        android:background="@drawable/online_image"
+        android:backgroundTint="#857F7F"
+        android:backgroundTintMode="multiply"
         android:elevation="20dp"
         android:gravity="left"
         android:paddingLeft="16dp"
         android:paddingTop="16dp"
         android:text="온라인"
+
         android:textColor="@color/white"
         android:textSize="15pt"
         android:textStyle="bold" />
@@ -50,9 +53,11 @@
     <Button
         android:id="@+id/offline"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="200dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/button_purple"
+        android:background="@drawable/offline_image"
+        android:backgroundTint="#857F7F"
+        android:backgroundTintMode="multiply"
         android:elevation="20dp"
         android:gravity="left"
         android:paddingLeft="16dp"
