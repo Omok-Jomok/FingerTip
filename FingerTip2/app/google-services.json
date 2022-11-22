@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "921558998499",
+    "project_id": "finger-tip-d1a80",
+    "storage_bucket": "finger-tip-d1a80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921558998499:android:acd67ff3e141bdefc654d6",
+        "android_client_info": {
+          "package_name": "com.example.fingertip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921558998499-l26q3b33isttftmm6pk4ccu20mftsi1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcQc2mxBKX6KiMUkHmJ6MVsuxwcrnQDsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921558998499-l26q3b33isttftmm6pk4ccu20mftsi1u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
