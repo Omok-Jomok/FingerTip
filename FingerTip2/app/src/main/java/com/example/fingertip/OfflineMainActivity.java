@@ -78,18 +78,27 @@ public class OfflineMainActivity extends AppCompatActivity {
             case TAKE_PICTURE:
                 if (resultCode == RESULT_OK && intent.hasExtra("data")) {
                     Bitmap bitmap = (Bitmap) intent.getExtras().get("data");
-
                     if (bitmap != null) {
-                        new Thread(() -> {
-                            OcrClient client = new OcrClient(bitmap, photo_iv);
-                            try {
-                                client.Detect();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                        //photo_iv.setImageBitmap(bitmap);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                OcrClient client = new OcrClient(bitmap);
+                                Thread req = new Thread(client);
+                                req.start();
+                                try {
+                                    req.join();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        photo_iv.setImageBitmap(client.bitmap);
+                                    }
+                                });
                             }
                         }).start();
                     }
-
                 }
                 break;
         }
