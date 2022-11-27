@@ -17,6 +17,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 public class OfflineMainActivity extends AppCompatActivity {
 
     final private static String TAG = "GILBOMI";
@@ -75,9 +78,18 @@ public class OfflineMainActivity extends AppCompatActivity {
             case TAKE_PICTURE:
                 if (resultCode == RESULT_OK && intent.hasExtra("data")) {
                     Bitmap bitmap = (Bitmap) intent.getExtras().get("data");
+
                     if (bitmap != null) {
-                        photo_iv.setImageBitmap(bitmap);
+                        new Thread(() -> {
+                            OcrClient client = new OcrClient(bitmap, photo_iv);
+                            try {
+                                client.Detect();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }).start();
                     }
+
                 }
                 break;
         }
