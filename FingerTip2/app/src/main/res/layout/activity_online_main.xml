@@ -10,6 +10,7 @@
     android:paddingBottom="10dp">
 
     <TextView
+
         android:id="@+id/online_shop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,6 +44,7 @@
             android:orientation="vertical">
 
             <Button
+                android:onClick="goOnlineShoppingMallActivity"
                 android:id="@+id/coupang"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
