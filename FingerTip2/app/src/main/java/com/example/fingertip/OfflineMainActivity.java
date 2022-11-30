@@ -4,9 +4,15 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -18,13 +24,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class OfflineMainActivity extends AppCompatActivity {
 
     final private static String TAG = "GILBOMI";
     Button btn_photo;
+    Button btn_album;
     ImageView photo_iv;
+    Uri uri;
 
     final static int TAKE_PICTURE = 1;
 
@@ -38,6 +47,7 @@ public class OfflineMainActivity extends AppCompatActivity {
 
         photo_iv = findViewById(R.id.photo_imageview);
         btn_photo = findViewById(R.id.camera_button);
+        btn_album = findViewById(R.id.album_button);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
@@ -48,6 +58,15 @@ public class OfflineMainActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(OfflineMainActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
         }
+
+        btn_album.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType(("image/*"));
+                startActivityResult.launch(intent);
+            }
+        });
 
         btn_photo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,12 +81,36 @@ public class OfflineMainActivity extends AppCompatActivity {
         });
     }
 
+    ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                public void onActivityResult(ActivityResult result){
+                    if(result.getResultCode() == RESULT_OK && result.getData() != null){
+                        uri = result.getData().getData();
+
+                        try{
+                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                            photo_iv.setImageBitmap(bitmap);
+                        }catch (FileNotFoundException e){
+                            e.printStackTrace();
+                        }catch (IOException e){
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+
     public void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Log.d(TAG, "onRequestPermissionsResult");
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "Permission: " + permissions[0] + "was" + grantResults[0]);
         }
+    }
+
+    public void goOfflineTextActivity(View view){
+        Intent intent = new Intent(OfflineMainActivity.this, OfflineTextActivity.class);
+        startActivity(intent);
     }
 
     @Override
