@@ -90,7 +90,9 @@ public class OfflineMainActivity extends AppCompatActivity {
 
                         try{
                             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                            photo_iv.setImageBitmap(bitmap);
+                            //photo_iv.setImageBitmap(bitmap);
+                            if (bitmap != null)
+                                goOfflineTextActivity(bitmap);
                         }catch (FileNotFoundException e){
                             e.printStackTrace();
                         }catch (IOException e){
@@ -113,6 +115,16 @@ public class OfflineMainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goOfflineTextActivity(Bitmap bitmap){
+        Intent intent = new Intent(OfflineMainActivity.this, OfflineTextActivity.class);
+        if (bitmap != null) {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            intent.putExtra("image", stream.toByteArray());
+        }
+        startActivity(intent);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -123,24 +135,7 @@ public class OfflineMainActivity extends AppCompatActivity {
                     Bitmap bitmap = (Bitmap) intent.getExtras().get("data");
                     if (bitmap != null) {
                         //photo_iv.setImageBitmap(bitmap);
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                OcrClient client = new OcrClient(bitmap);
-                                Thread req = new Thread(client);
-                                req.start();
-                                try {
-                                    req.join();
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        photo_iv.setImageBitmap(client.bitmap);
-                                    }
-                                });
-                            }
-                        }).start();
+                        goOfflineTextActivity(bitmap);
                     }
                 }
                 break;

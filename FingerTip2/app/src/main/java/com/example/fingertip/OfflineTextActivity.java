@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
@@ -22,6 +24,8 @@ public class OfflineTextActivity extends AppCompatActivity {
     private TextToSpeech tts;
     private TextView ocr_tv;
 
+    private OcrClient ocrClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,37 @@ public class OfflineTextActivity extends AppCompatActivity {
 
         ocr_tv = findViewById(R.id.ocr_tv);
         ocr_tv.setMovementMethod(new ScrollingMovementMethod());
+
+        // get bitmap
+        byte[] bitmap = getIntent().getByteArrayExtra("image");
+        if (bitmap != null)
+        {
+            ocrClient = new OcrClient(bitmap);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.e("", "running text activity!");
+
+                    Thread t = new Thread(ocrClient);
+                    t.start();
+                    try {
+                        t.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Log.e("", "client run ended!");
+                    StringBuilder builder = new StringBuilder();
+                    if (ocrClient.result != null) {
+                        for (int i = 0; i < ocrClient.result.length; i++)
+                        {
+                            builder.append(ocrClient.result[i].result);
+                            builder.append('\n');
+                        }
+                    }
+                    ocr_tv.setText(builder.toString());
+                }
+            }).start();
+        }
 
         // TTS를 생성하고 OnInitListener로 초기화 한다.
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
@@ -40,6 +75,7 @@ public class OfflineTextActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     public void makeBig(View view){
@@ -66,6 +102,11 @@ public class OfflineTextActivity extends AppCompatActivity {
             tts.stop();
             tts.shutdown();
             tts = null;
+        }
+
+        if (ocrClient != null) {
+            ocrClient.finalize();
+            ocrClient = null;
         }
     }
 
