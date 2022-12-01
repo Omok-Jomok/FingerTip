@@ -3,16 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/drawable/black_border.xml" value="0.2" />
+        <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/drawable/border.xml" value="0.2" />
         <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/drawable/button_purple.xml" value="0.223" />
+        <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/drawable/button_white.xml" value="0.2" />
         <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/drawable/text_border.xml" value="0.223" />
+        <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/drawable/text_purple_button.xml" value="0.2" />
         <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/layout/activity_login.xml" value="0.12132725430597771" />
         <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/layout/activity_main.xml" value="0.24947916666666667" />
         <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/layout/activity_offline_main.xml" value="0.176" />
         <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/layout/activity_offline_text.xml" value="0.24947916666666667" />
         <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/layout/activity_online_main.xml" value="0.12132725430597771" />
         <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/layout/activity_online_mall.xml" value="0.12132725430597771" />
+        <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/layout/activity_search_coupang.xml" value="0.2427536231884058" />
+        <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/layout/activity_shop_coupang.xml" value="0.23489583333333333" />
         <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/layout/activity_signup.xml" value="0.24947916666666667" />
         <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/layout/activity_splash.xml" value="0.24947916666666667" />
+        <entry key="..\:/2022capstone/dbui/FingerTip2/app/src/main/res/layout/search_record_list.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/qkrgm/AndroidStudioProjects/FingerTip2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.193" />
         <entry key="..\:/Users/qkrgm/AndroidStudioProjects/FingerTip2/app/src/main/res/drawable/border.xml" value="0.193" />
         <entry key="..\:/Users/qkrgm/AndroidStudioProjects/FingerTip2/app/src/main/res/drawable/border_online.xml" value="0.239" />

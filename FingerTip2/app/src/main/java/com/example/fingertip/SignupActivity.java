@@ -61,7 +61,7 @@ public class SignupActivity extends AppCompatActivity {
                             userInfo.setPhoneNumber(phoneNumber);
                             userInfo.setNickname(nickname);
 
-                            mDatabase.child("UserAccount").child(firebaseUser.getUid()).setValue(userInfo);
+                            mDatabase.child("UserAccount").child(firebaseUser.getUid()).push().setValue(userInfo);
 
                             Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                             startActivity(intent);
