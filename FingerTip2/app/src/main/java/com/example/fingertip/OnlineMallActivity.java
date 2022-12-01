@@ -33,6 +33,9 @@ public class OnlineMallActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_mall);
 
+        Intent intent = getIntent(); //전달할 데이터를 받을 Intent
+        //text 키값으로 데이터를 받는다. String을 받아야 하므로 getStringExtra()를 사용함
+        String text = intent.getStringExtra("now_search_product");
         // 웹뷰 시작
         mWebView = (WebView) findViewById(R.id.webView);
 
@@ -140,7 +143,7 @@ public class OnlineMallActivity extends AppCompatActivity {
         mWebSettings.setCacheMode(WebSettings.LOAD_NO_CACHE); // 브라우저 캐시 허용 여부
         mWebSettings.setDomStorageEnabled(true); // 로컬저장소 허용 여부
 
-        mWebView.loadUrl("https://www.coupang.com"); // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
+        mWebView.loadUrl("https://www.coupang.com/np/search?component=&q=" + text + "&channel=user"); // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
 
     }
 

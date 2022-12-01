@@ -6,52 +6,73 @@
     android:layout_height="match_parent"
     tools:context=".OfflineMainActivity">
 
+
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="자세히 보고 싶은 사진을 선택해 주세요"
-        android:textSize="20dp"
+        android:text="자세히 보고 싶은 사진을\n        선택해 주세요"
+        android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/album_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058">
 
     </TextView>
 
     <Button
         android:id="@+id/album_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="앨범에서 사진 선택"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:background="@drawable/button_purple"
+        android:text=" 앨범에서 사진 선택 "
+        android:textColor="@color/white"
+        android:textSize="15pt"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.281" />
+        app:layout_constraintTop_toBottomOf="@+id/text"
+        app:layout_constraintVertical_bias="0.082" />
 
     <Button
         android:id="@+id/camera_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/button_purple"
         android:text="카메라로 촬영하기"
+        android:textColor="@color/white"
+        android:textSize="15pt"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/album_button"
-        app:layout_constraintVertical_bias="0.253"></Button>
+        app:layout_constraintVertical_bias="0.0"></Button>
 
     <ImageView
         android:id="@+id/photo_imageview"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera_button"
+        app:layout_constraintVertical_bias="0.333"></ImageView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="temp"
+        android:onClick="goOfflineTextActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/camera_button">
+        app:layout_constraintTop_toBottomOf="@+id/photo_imageview"></Button>
 
-    </ImageView>
 </androidx.constraintlayout.widget.ConstraintLayout>
