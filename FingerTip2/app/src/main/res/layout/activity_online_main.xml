@@ -44,7 +44,7 @@
             android:orientation="vertical">
 
             <Button
-                android:onClick="goOnlineShoppingMallActivity"
+                android:onClick="goShoppingMallCoupangActivity"
                 android:id="@+id/coupang"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"

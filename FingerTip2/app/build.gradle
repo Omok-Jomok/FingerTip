@@ -36,6 +36,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
     //implementation 'com.androidx.support.constraint:constraint-layout:2.0.4'
     implementation 'com.google.firebase:firebase-auth:21.1.0'
     implementation 'com.google.firebase:firebase-database:20.1.0'
