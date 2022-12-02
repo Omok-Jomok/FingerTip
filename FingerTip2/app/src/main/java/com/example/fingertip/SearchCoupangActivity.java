@@ -86,7 +86,7 @@ public class SearchCoupangActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
 
-        mDatabase.child("UserSearchRecord").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("UserSearchRecord").child(firebaseUser.getUid()).orderByChild("day").addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -158,9 +158,9 @@ public class SearchCoupangActivity extends AppCompatActivity {
         SearchRecordItem searchRecordItem = new SearchRecordItem();
         searchRecordItem.setProduct(product);
         searchRecordItem.setMonth(month);
-        searchRecordItem.setDay(day);
+        searchRecordItem.setDay(day - 31);
 
-        mDatabase.child("UserSearchRecord").child(firebaseUser.getUid()).child(time).push().setValue(searchRecordItem);
+        mDatabase.child("UserSearchRecord").child(firebaseUser.getUid()).child(time).setValue(searchRecordItem);
     }
 
     public void startRecord(View view){

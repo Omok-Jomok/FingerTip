@@ -57,8 +57,9 @@ public class SearchRecordAdapter extends RecyclerView.Adapter<SearchRecordAdapte
         }
 
         void onBind(SearchRecordItem item){
+            int DDay = item.getDay() + 31;
             product_name.setText("   " + item.getProduct());
-            search_day.setText(item.getMonth() + "." + item.getDay());
+            search_day.setText(item.getMonth() + "." + DDay);
         }
     }
 }

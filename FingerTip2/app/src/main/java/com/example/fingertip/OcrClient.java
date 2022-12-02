@@ -14,8 +14,11 @@ import java.lang.String;
 
 public class OcrClient implements Runnable
 {
-    protected final String host = "ec2-52-79-105-90.ap-northeast-2.compute.amazonaws.com";
-    protected final int port = 9879;
+//    protected final String host = "ec2-52-79-105-90.ap-northeast-2.compute.amazonaws.com";
+//    protected final int port = 9879;
+    protected final String host = "ec2-3-39-194-102.ap-northeast-2.compute.amazonaws.com";
+    //protected final String host = "10.0.2.2"; // localhost
+    protected final int port = 5000;
 
     public Bitmap bitmap;
     private ByteArrayOutputStream stream;
