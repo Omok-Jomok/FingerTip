@@ -56,8 +56,8 @@
 
     <ImageView
         android:id="@+id/photo_imageview"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -65,14 +65,5 @@
         app:layout_constraintTop_toBottomOf="@+id/camera_button"
         app:layout_constraintVertical_bias="0.333"></ImageView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="temp"
-        android:onClick="goOfflineTextActivity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo_imageview"></Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
