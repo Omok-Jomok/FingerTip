@@ -24,46 +24,18 @@ public class OfflineTextActivity extends AppCompatActivity {
     private TextToSpeech tts;
     private TextView ocr_tv;
 
-    private OcrClient ocrClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offline_text);
 
+        Intent intent = getIntent();
+        String ocr_text = intent.getExtras().getString("ocr_text");
         ocr_tv = findViewById(R.id.ocr_tv);
         ocr_tv.setMovementMethod(new ScrollingMovementMethod());
 
-        // get bitmap
-        byte[] bitmap = getIntent().getByteArrayExtra("image");
-        if (bitmap != null)
-        {
-            ocrClient = new OcrClient(bitmap);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Log.e("", "running text activity!");
-
-                    Thread t = new Thread(ocrClient);
-                    t.start();
-                    try {
-                        t.join();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    Log.e("", "client run ended!");
-                    StringBuilder builder = new StringBuilder();
-                    if (ocrClient.result != null) {
-                        for (int i = 0; i < ocrClient.result.length; i++)
-                        {
-                            builder.append(ocrClient.result[i].result);
-                            builder.append('\n');
-                        }
-                    }
-                    ocr_tv.setText(builder.toString());
-                }
-            }).start();
-        }
+        ocr_tv.setText(ocr_text);
 
         // TTS를 생성하고 OnInitListener로 초기화 한다.
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
@@ -102,11 +74,6 @@ public class OfflineTextActivity extends AppCompatActivity {
             tts.stop();
             tts.shutdown();
             tts = null;
-        }
-
-        if (ocrClient != null) {
-            ocrClient.finalize();
-            ocrClient = null;
         }
     }
 
