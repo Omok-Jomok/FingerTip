@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class SearchRecordAdapter extends RecyclerView.Adapter<SearchRecordAdapter.ViewHolder>{
     private ArrayList<SearchRecordItem> mSearchRecordList;
     private Context context;
+    private Intent intent;
 
     public SearchRecordAdapter(ArrayList<SearchRecordItem> mSearchRecordList, Context context){
         this.mSearchRecordList = mSearchRecordList;
@@ -25,6 +27,8 @@ public class SearchRecordAdapter extends RecyclerView.Adapter<SearchRecordAdapte
     @NonNull
     @Override
     public SearchRecordAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        context = parent.getContext();
+
         View view;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_record_list, parent, false);
         return new ViewHolder(view);
@@ -77,7 +81,11 @@ public class SearchRecordAdapter extends RecyclerView.Adapter<SearchRecordAdapte
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION)
                     {
-                        // click event
+                        SearchRecordItem searchRecordItem = mSearchRecordList.get(pos);
+                        Toast.makeText(context, searchRecordItem.getProduct(), Toast.LENGTH_SHORT).show();
+                        intent = new Intent(v.getContext(), OnlineMallActivity.class);
+                        intent.putExtra("now_search_product", searchRecordItem.getProduct());
+                        v.getContext().startActivity(intent);
                     }
                 }
             });
