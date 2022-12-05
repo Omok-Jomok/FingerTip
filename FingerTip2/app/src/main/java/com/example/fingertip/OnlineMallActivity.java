@@ -1,5 +1,7 @@
 package com.example.fingertip;
 
+import static android.speech.tts.TextToSpeech.ERROR;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -13,6 +15,7 @@ import android.os.SystemClock;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,10 +39,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class OnlineMallActivity extends AppCompatActivity {
 
+    private TextToSpeech tts;
     private WebView mWebView; // 웹뷰 선언
     private WebSettings mWebSettings; //웹뷰세팅
     private EditText et_search;
@@ -93,6 +98,17 @@ public class OnlineMallActivity extends AppCompatActivity {
         String text = intent2.getStringExtra("now_search_product");
         // 웹뷰 시작
         mWebView = (WebView) findViewById(R.id.webView);
+
+        // TTS를 생성하고 OnInitListener로 초기화 한다.
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != ERROR) {
+                    // 언어를 선택한다.
+                    tts.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
 
         mWebView.setWebViewClient(new WebViewClient(){
             @Override
@@ -448,6 +464,8 @@ public class OnlineMallActivity extends AppCompatActivity {
         float x = 170.0f;
         float y = 1970.0f;
         int metaState = 0;
+        
+        tts.speak("장바구니에 상품이 담겼습니다",TextToSpeech.QUEUE_FLUSH, null);
 
         MotionEvent motionEvent1 = MotionEvent.obtain(
                 downTime,
