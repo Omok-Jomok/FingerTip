@@ -11,6 +11,13 @@
     android:paddingRight="30dp"
     android:paddingTop="100dp"
     android:paddingBottom="10dp">
+    
+    <TextView
+        android:textSize="0dp"
+        android:text="로그인 화면입니다 로그인을 진행해 주세요"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
 
 
     <TextView
