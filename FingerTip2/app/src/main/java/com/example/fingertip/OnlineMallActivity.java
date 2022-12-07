@@ -464,7 +464,7 @@ public class OnlineMallActivity extends AppCompatActivity {
         float x = 170.0f;
         float y = 1970.0f;
         int metaState = 0;
-        
+
         tts.speak("장바구니에 상품이 담겼습니다",TextToSpeech.QUEUE_FLUSH, null);
 
         MotionEvent motionEvent1 = MotionEvent.obtain(

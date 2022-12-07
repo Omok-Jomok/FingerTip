@@ -153,6 +153,11 @@ public class SearchCoupangActivity extends AppCompatActivity {
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");   //한국어
     }
 
+    public void backToCoupang(View view){
+        Intent intent = new Intent(SearchCoupangActivity.this, ShopCoupangActivity.class);
+        startActivity(intent);
+    }
+
     public void addSearchRecord(String product, int month, int day, String time) {
 
         SearchRecordItem searchRecordItem = new SearchRecordItem();

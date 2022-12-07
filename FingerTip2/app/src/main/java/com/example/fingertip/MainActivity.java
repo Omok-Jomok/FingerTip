@@ -1,10 +1,13 @@
 package com.example.fingertip;
 
+import static android.speech.tts.TextToSpeech.ERROR;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,11 +19,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
+    private TextToSpeech tts;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private TextView tv_current_user;
+    private String current_user_nickname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +46,34 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserInfo user = dataSnapshot.getValue(UserInfo.class);
 
-                String current_user_nickname = user.getNickname();
+                current_user_nickname = user.getNickname();
 
                 //텍스트뷰에 받아온 문자열 대입하기
                 tv_current_user.setText(current_user_nickname + " 님");
+
+                setTts();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
+    }
+
+    public void setTts(){
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != ERROR) {
+                    tts.setLanguage(Locale.KOREAN);
+                    speakChoose(current_user_nickname);
+                }
+            }
+        });
+    }
+    public void speakChoose(String name){
+        tts.speak(name+"님 안녕하세요 온라인 오프라인 쇼핑을 선택해 주세요",TextToSpeech.QUEUE_FLUSH, null);
     }
 
     public void goOnlineMainActivity(View view){
