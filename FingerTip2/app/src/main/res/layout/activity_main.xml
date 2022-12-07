@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white"
     android:paddingLeft="32dp"
     android:paddingRight="32dp"
     android:paddingTop="64dp"
     android:paddingBottom="16dp">
+
 
     <TextView
         android:id="@+id/online_shop"
@@ -51,21 +52,36 @@
         android:textSize="15pt"
         android:textStyle="bold" />
 
-    <Button
-        android:onClick="goOfflineMainActivity"
-        android:id="@+id/offline_button"
-        android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/offline_image"
-        android:backgroundTint="#857F7F"
-        android:backgroundTintMode="multiply"
-        android:elevation="20dp"
-        android:gravity="left"
-        android:paddingLeft="16dp"
-        android:paddingTop="20dp"
-        android:text="오프라인"
-        android:textColor="@color/white"
-        android:textSize="15pt"
-        android:textStyle="bold" />
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:onClick="goOfflineMainActivity"
+            android:id="@+id/offline_button"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/offline_image"
+            android:backgroundTint="#857F7F"
+            android:backgroundTintMode="multiply"
+            android:elevation="20dp"
+            android:gravity="left"
+            android:paddingLeft="16dp"
+            android:paddingTop="20dp"
+            android:text="오프라인"
+            android:textColor="@color/white"
+            android:textSize="15pt"
+            android:textStyle="bold" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab_btn"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            app:fabSize="normal"
+            app:elevation="6dp"
+            app:backgroundTint="@color/purple"
+            android:src="@drawable/eyes"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>
