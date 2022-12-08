@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, OnlineMallActivity.class);
                 intent.putExtra("now_search_product", "bag");
                 startActivity(intent);
-            }if (VoiceMsg.indexOf("마이페이지") > -1) {
+            }else if (VoiceMsg.indexOf("마이페이지") > -1) {
                 Intent intent = new Intent(MainActivity.this, OnlineMallActivity.class);
                 intent.putExtra("now_search_product", "my");
                 startActivity(intent);
