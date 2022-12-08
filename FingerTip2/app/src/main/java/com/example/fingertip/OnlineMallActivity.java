@@ -214,7 +214,7 @@ public class OnlineMallActivity extends AppCompatActivity {
         mWebSettings.setCacheMode(WebSettings.LOAD_NO_CACHE); // 브라우저 캐시 허용 여부
         mWebSettings.setDomStorageEnabled(true); // 로컬저장소 허용 여부
 
-        mWebView.loadUrl("https://www.coupang.com/np/search?component=&q=" + text + "&channel=user"); // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
+        loadWebView(text);
 
         et_search = findViewById(R.id.et_search);
         et_search.setOnKeyListener(new View.OnKeyListener() {
@@ -256,6 +256,17 @@ public class OnlineMallActivity extends AppCompatActivity {
         intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");   //한국어
+    }
+
+    public void loadWebView(String text){
+        if(text.equals("bag")){
+            mWebView.loadUrl("https://cart.coupang.com/cartView.pang");
+        }
+        else if(text.equals("my")){
+            mWebView.loadUrl("https://mc.coupang.com/ssr/desktop/order/list");
+        }else{
+            mWebView.loadUrl("https://www.coupang.com/np/search?component=&q=" + text + "&channel=user"); // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
+        }
     }
 
     public void startRecord2(View view){

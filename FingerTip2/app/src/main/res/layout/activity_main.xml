@@ -5,13 +5,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
-    android:paddingTop="64dp"
-    android:paddingBottom="16dp">
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="15dp">
 
 
     <TextView
+        android:background="@drawable/button_purple"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:text="메인 페이지 입니다"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+    <TextView
+        android:layout_marginTop="20dp"
         android:id="@+id/online_shop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +34,7 @@
         android:textSize="40dp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:layout_marginBottom="0dp"/>
+        />
 
     <TextView
         android:id="@+id/username_tv"
@@ -31,7 +45,7 @@
         android:textSize="70dp"
         android:textColor="@color/purple"
         android:textStyle="bold"
-        android:layout_marginBottom="25dp"/>
+        android:layout_marginBottom="30dp"/>
 
 
     <Button
@@ -39,7 +53,7 @@
         android:id="@+id/online_button"
         android:layout_width="match_parent"
         android:background="@drawable/online_image"
-        android:layout_height="230dp"
+        android:layout_height="260dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="#857F7F"
         android:backgroundTintMode="multiply"
@@ -54,12 +68,12 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="300dp">
         <Button
             android:onClick="goOfflineMainActivity"
             android:id="@+id/offline_button"
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="260dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/offline_image"
             android:backgroundTint="#857F7F"
@@ -79,7 +93,8 @@
             android:id="@+id/fab_btn"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
-            app:fabSize="normal"
+            app:fabCustomSize="75dp"
+            app:maxImageSize="40dp"
             app:elevation="6dp"
             app:backgroundTint="@color/purple"
             android:src="@drawable/eyes"></com.google.android.material.floatingactionbutton.FloatingActionButton>

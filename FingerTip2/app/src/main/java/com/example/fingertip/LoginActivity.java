@@ -23,7 +23,6 @@ import java.util.Locale;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextToSpeech tts;
     private FirebaseAuth mAuth;
     private EditText sign_email;
     private EditText sign_password;
@@ -34,22 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
-
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != ERROR) {
-                    // 언어를 선택한다.
-                    tts.setLanguage(Locale.KOREAN);
-                    speakLogin();
-                }
-            }
-        });
     }
 
-    public void speakLogin(){
-        tts.speak("로그인 화면입니다 로그인을 진행해 주세요",TextToSpeech.QUEUE_FLUSH, null);
-    }
 
     public void goSignUpActivity(View view){
         Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
@@ -71,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(LoginActivity.this, "Authentication",
                                     Toast.LENGTH_SHORT).show();
-                            tts.speak("로그인에 성공하셨습니다",TextToSpeech.QUEUE_FLUSH, null);
+
                             finish();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);

@@ -8,37 +8,55 @@
 
 
     <TextView
+
+        android:id="@+id/topLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="848dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/button_purple"
+        android:text="오프라인 페이지 입니다"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="30dp">
+
+    </TextView>
+
+    <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="자세히 보고싶은 사진을 \n 골라주세요"
         android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024"
+        app:layout_constraintTop_toBottomOf="@+id/topLabel"
         tools:layout_editor_absoluteX="0dp">
 
     </TextView>
 
     <LinearLayout
-        android:weightSum="2"
-
         android:id="@+id/linearLayout3"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.032"
         tools:layout_editor_absoluteX="-16dp">
 
         <Button
-            android:layout_margin="5dp"
             android:id="@+id/takePicture"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
 
             android:layout_weight="1"
             android:background="@drawable/button_purple"
@@ -48,17 +66,17 @@
             android:textStyle="bold" />
 
         <Button
-            android:layout_margin="5dp"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            android:layout_weight="1"
             android:id="@+id/openAlbum"
-
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+
             android:background="@drawable/button_purple"
             android:text="   갤러리에서 사진 선택   "
-            android:textSize="20dp"  />
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -75,14 +93,14 @@
         tools:layout_editor_absoluteX="9dp" />
 
     <Button
-        android:background="@drawable/button_purple"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
         android:id="@+id/ocrButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_purple"
         android:text="   사진에서 글자 읽기   "
+        android:textColor="#ffffff"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

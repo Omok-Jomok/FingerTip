@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,6 +18,7 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         cThis=this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         SttIntent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         SttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getApplicationContext().getPackageName());
@@ -98,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     private RecognitionListener listener=new RecognitionListener() {
         @Override
         public void onReadyForSpeech(Bundle bundle) {
@@ -137,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             String[] rs = new String[mResult.size()];
             mResult.toArray(rs);
             //txtInMsg.setText(rs[0]+"\r\n"+txtInMsg.getText());
-            //FuncVoiceOrderCheck(rs[0]);
+            FuncVoiceOrderCheck(rs[0]);
             mRecognizer.startListening(SttIntent);
 
         }
@@ -152,6 +156,39 @@ public class MainActivity extends AppCompatActivity {
             //txtSystem.setText("onEvent..........."+"\r\n"+txtSystem.getText());
         }
     };
+
+    //입력된 음성 메세지 확인 후 동작 처리
+    private void FuncVoiceOrderCheck(String VoiceMsg){
+        if(VoiceMsg.length()<1)return;
+
+        VoiceMsg=VoiceMsg.replace(" ","");//공백제거
+
+        if(VoiceMsg.indexOf("쿠팡")>-1) {
+            System.out.println(VoiceMsg);
+            if (VoiceMsg.indexOf("장바구니") > -1) {
+                Intent intent = new Intent(MainActivity.this, OnlineMallActivity.class);
+                intent.putExtra("now_search_product", "bag");
+                startActivity(intent);
+            }if (VoiceMsg.indexOf("마이페이지") > -1) {
+                Intent intent = new Intent(MainActivity.this, OnlineMallActivity.class);
+                intent.putExtra("now_search_product", "my");
+                startActivity(intent);
+            } else {
+                Intent coupangIntent = new Intent(MainActivity.this, SearchCoupangActivity.class);
+                startActivity(coupangIntent);
+                onDestroy();
+            }
+        }
+        else if(VoiceMsg.indexOf("어플꺼")>-1){
+            ActivityCompat.finishAffinity(this);
+            System.exit(0);
+            //FuncVoiceOut("전등을 끕니다");//전등을 끕니다 라는 음성 출력
+        }
+        else if(VoiceMsg.indexOf("오프라인")>-1){
+            Intent intent = new Intent(MainActivity.this, OfflineMainActivity.class);
+            startActivity(intent);
+        }
+    }
 
     public void setTts(){
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
