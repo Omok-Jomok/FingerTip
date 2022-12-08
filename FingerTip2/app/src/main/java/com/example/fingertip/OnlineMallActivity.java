@@ -155,9 +155,7 @@ public class OnlineMallActivity extends AppCompatActivity {
 
                 gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.OnGestureListener() {
                     @Override
-                    public boolean onDown(MotionEvent motionEvent) {
-                            return false;
-                        }
+                    public boolean onDown(MotionEvent motionEvent) {return false;}
 
                     @Override
                     public void onShowPress(MotionEvent motionEvent) {
@@ -582,7 +580,7 @@ public class OnlineMallActivity extends AppCompatActivity {
         long downTime = SystemClock.uptimeMillis();
         long eventTime = SystemClock.uptimeMillis() + 100;
         float x = 170.0f;
-        float y = 1970.0f;
+        float y = 1650.0f;
         int metaState = 0;
 
         MotionEvent motionEvent1 = MotionEvent.obtain(
@@ -601,7 +599,7 @@ public class OnlineMallActivity extends AppCompatActivity {
         long downTime = SystemClock.uptimeMillis();
         long eventTime = SystemClock.uptimeMillis() + 100;
         float x = 170.0f;
-        float y = 1970.0f;
+        float y = 1650.0f;
         int metaState = 0;
 
         tts.speak("장바구니에 상품이 담겼습니다",TextToSpeech.QUEUE_FLUSH, null);
