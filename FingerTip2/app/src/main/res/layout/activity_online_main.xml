@@ -48,12 +48,12 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="640dp">
+        android:layout_height="580dp">
 
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="350dp"
-            android:layout_height="600dp"
+            android:layout_height="560dp"
             android:layout_gravity="center|top"
             android:scrollbars="none">
 

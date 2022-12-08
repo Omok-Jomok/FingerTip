@@ -12,9 +12,9 @@
         android:id="@+id/topLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="848dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="848dp"
         android:background="@drawable/button_purple"
         android:text="오프라인 페이지 입니다"
         android:textAlignment="center"
@@ -80,17 +80,28 @@
 
     </LinearLayout>
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
+    <LinearLayout
         android:layout_margin="10dp"
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="480dp"
         android:background="@drawable/text_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:layout_constraintVertical_bias="0.19"
-        tools:layout_editor_absoluteX="9dp" />
+        tools:layout_editor_absoluteX="9dp">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_margin="15dp"
+
+            />
+
+    </LinearLayout>
+
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="370dp"
@@ -98,31 +109,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
         <Button
-            android:layout_gravity="top|center"
             android:id="@+id/ocrButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
             android:background="@drawable/button_purple"
             android:text="   사진에서 글자 읽기   "
             android:textColor="#ffffff"
             android:textSize="20dp"
-            android:textStyle="bold"
-             />
+            android:textStyle="bold" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab_btn"
             android:layout_gravity="bottom|end"
-            app:fabCustomSize="75dp"
-            app:maxImageSize="40dp"
-            app:elevation="6dp"
+            android:src="@drawable/eyes"
             app:backgroundTint="@color/purple"
-            android:src="@drawable/eyes"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+            app:elevation="6dp"
+            app:fabCustomSize="75dp"
+            app:maxImageSize="40dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

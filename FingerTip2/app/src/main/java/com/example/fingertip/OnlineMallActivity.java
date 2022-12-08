@@ -32,6 +32,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.WebBackForwardList;
 
 import android.view.GestureDetector;
 import android.os.Handler;
@@ -87,6 +88,8 @@ public class OnlineMallActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     SpeechRecognizer speechRecognizer;
+
+    String yUrl;
 
     Intent intent;
     final int PERMISSION = 1;	//permission 변수
@@ -184,6 +187,7 @@ public class OnlineMallActivity extends AppCompatActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view,String url){
                 //터치를 했을때 작동하는 메서드
+
                 mWebView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
@@ -442,14 +446,7 @@ public class OnlineMallActivity extends AppCompatActivity {
         return bitmap;
     }
 
-    @Override
-    public void onBackPressed() {
-        if(mWebView.canGoBack()){
-            mWebView.goBack();
-        }else{
-            super.onBackPressed();
-        }
-    }
+
 
     public void loadWebView(String text){
         if(text.equals("bag")){
@@ -613,6 +610,15 @@ public class OnlineMallActivity extends AppCompatActivity {
         searchRecordItem.setDay(day - 31);
 
         mDatabase.child("UserSearchRecord").child(firebaseUser.getUid()).child(time).setValue(searchRecordItem);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mWebView.canGoBack()){
+            mWebView.goBack();
+        }else{
+            super.onBackPressed();
+        }
     }
 
 
