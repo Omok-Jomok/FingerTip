@@ -57,7 +57,7 @@ public class OfflineTextActivity extends AppCompatActivity {
     }
 
     public void makeSmall(View view){
-        float currentSize = ocr_tv.getTextSize()/2 - 2;
+        float currentSize = ocr_tv.getTextSize()/4 - 2;
         System.out.println(currentSize);
         ocr_tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentSize);
     }
