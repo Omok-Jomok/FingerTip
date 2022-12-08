@@ -258,6 +258,15 @@ public class OnlineMallActivity extends AppCompatActivity {
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");   //한국어
     }
 
+    @Override
+    public void onBackPressed() {
+        if(mWebView.canGoBack()){
+            mWebView.goBack();
+        }else{
+            super.onBackPressed();
+        }
+    }
+
     public void loadWebView(String text){
         if(text.equals("bag")){
             mWebView.loadUrl("https://cart.coupang.com/cartView.pang");
