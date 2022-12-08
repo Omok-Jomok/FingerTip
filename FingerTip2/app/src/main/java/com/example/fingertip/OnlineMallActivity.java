@@ -10,8 +10,16 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Picture;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.SystemClock;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -27,8 +35,10 @@ import android.webkit.WebViewClient;
 
 import android.view.GestureDetector;
 import android.os.Handler;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +47,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.googlecode.tesseract.android.TessBaseAPI;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,6 +62,16 @@ import java.util.Locale;
 
 
 public class OnlineMallActivity extends AppCompatActivity {
+
+    Bitmap image; //사용되는 이미지
+    private TessBaseAPI mTess; //Tess API reference
+    String datapath = "" ; //언어데이터가 있는 경로
+
+    private String imageFilePath; //이미지 파일 경로
+    private Uri p_Uri;
+
+    private static final int REQUEST_CODE = 0; //프로필 사진 요청 코드
+    static final int REQUEST_IMAGE_CAPTURE = 672;
 
     Context cThis;//context 설정
     private FloatingActionButton fab;
@@ -85,6 +112,18 @@ public class OnlineMallActivity extends AppCompatActivity {
         cThis=this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_mall);
+
+        //언어파일 경로
+        datapath = getFilesDir()+ "/tesseract/";
+
+        //트레이닝데이터가 카피되어 있는지 체크
+        checkFile(new File(datapath + "tessdata/"), "kor");
+        checkFile(new File(datapath + "tessdata/"), "eng");
+
+        String lang = "kor+eng";
+
+        mTess = new TessBaseAPI();
+        mTess.init(datapath, lang);
 
         mNow = System.currentTimeMillis();
         mDate = new Date(mNow);
@@ -373,6 +412,34 @@ public class OnlineMallActivity extends AppCompatActivity {
             Intent intent = new Intent(OnlineMallActivity.this, OfflineMainActivity.class);
             startActivity(intent);
         }
+        else if(VoiceMsg.indexOf("사진") >-1){
+
+//            BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.imageView)).getDrawable();
+            image = getBitmapOfWebView(mWebView);
+
+            String OCRresult = null;
+            mTess.setImage(image);
+
+            //텍스트 추출
+            OCRresult = mTess.getUTF8Text();
+            //TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
+            //OCRTextView.setText(OCRresult);
+
+            Intent intent = new Intent(OnlineMallActivity.this, OfflineTextActivity.class);
+            intent.putExtra("ocr_text", OCRresult);
+            startActivity(intent);
+        }
+    }
+
+    private Bitmap getBitmapOfWebView(final WebView webView){
+        float scale = webView.getScale();
+//     webview
+        int webViewHeight = (int) (webView.getContentHeight()*scale);
+        Bitmap bitmap = Bitmap.createBitmap(webView.getWidth(),webViewHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+//
+        webView.draw(canvas);
+        return bitmap;
     }
 
     @Override
@@ -652,6 +719,52 @@ public class OnlineMallActivity extends AppCompatActivity {
         );
 
         mWebView.dispatchTouchEvent(motionEvent1);
+    }
+
+    //장치에 파일 복사
+    private void copyFiles(String lang) {
+        try{
+            //파일이 있을 위치
+            String filepath = datapath + "/tessdata/"+lang+".traineddata";
+
+            //AssetManager에 액세스
+            AssetManager assetManager = getAssets();
+
+            //읽기/쓰기를 위한 열린 바이트 스트림
+            InputStream instream = assetManager.open("tessdata/"+lang+".traineddata");
+            OutputStream outstream = new FileOutputStream(filepath);
+
+            //filepath에 의해 지정된 위치에 파일 복사
+            byte[] buffer = new byte[1024];
+            int read;
+
+            while ((read = instream.read(buffer)) != -1) {
+                outstream.write(buffer, 0, read);
+            }
+            outstream.flush();
+            outstream.close();
+            instream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //check file on the device
+    private void checkFile(File dir, String lang) {
+        //디렉토리가 없으면 디렉토리를 만들고 그후에 파일을 카피
+        if(!dir.exists()&& dir.mkdirs()) {
+            copyFiles(lang);
+        }
+        //디렉토리가 있지만 파일이 없으면 파일카피 진행
+        if(dir.exists()) {
+            String datafilepath = datapath+ "/tessdata/"+lang+".traineddata";
+            File datafile = new File(datafilepath);
+            if(!datafile.exists()) {
+                copyFiles(lang);
+            }
+        }
     }
 
 }
