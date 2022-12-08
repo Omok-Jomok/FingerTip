@@ -35,12 +35,13 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    Context cThis;//context 설정
+
     private TextToSpeech tts;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private TextView tv_current_user;
     private String current_user_nickname;
+    Context cThis;//context 설정
     private FloatingActionButton fab;
     Intent SttIntent;
     SpeechRecognizer mRecognizer;

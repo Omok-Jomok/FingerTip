@@ -3,11 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp"
-    android:paddingTop="20dp"
-    android:paddingBottom="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -16,6 +13,9 @@
         android:text="온라인 쇼핑 화면 입니다"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
         android:textSize="20dp"
         android:textStyle="bold">
@@ -46,121 +46,139 @@
         android:textStyle="bold"
         android:layout_marginBottom="20dp"/>
 
-    <ScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars = "none">
+        android:layout_height="640dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="350dp"
+            android:layout_height="600dp"
+            android:layout_gravity="center|top"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/coupang"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/button_purple"
+                    android:drawableRight="@drawable/coupang_resize"
+                    android:elevation="20dp"
+                    android:gravity="left"
+                    android:onClick="goShoppingMallCoupangActivity"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="30dp"
+                    android:paddingRight="20dp"
+                    android:text="쿠팡"
+                    android:textColor="@color/white"
+                    android:textSize="15pt"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/street_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/button_purple"
+                    android:gravity="left"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="30dp"
+                    android:paddingRight="20dp"
+                    android:text="11번가"
+                    android:textColor="@color/white"
+                    android:textSize="15pt"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/naver_shop"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/button_purple"
+                    android:gravity="left"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="30dp"
+                    android:text="네이버 쇼핑"
+                    android:textColor="@color/white"
+                    android:textSize="15pt"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/Gmarket"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/button_purple"
+                    android:gravity="left"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="30dp"
+                    android:text="G마켓"
+                    android:textColor="@color/white"
+                    android:textSize="15pt"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/auction"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/button_purple"
+                    android:gravity="left"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="30dp"
+                    android:text="옥션"
+                    android:textColor="@color/white"
+                    android:textSize="15pt"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/ssg"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/button_purple"
+                    android:gravity="left"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="30dp"
+                    android:text="SSG.com"
+                    android:textColor="@color/white"
+                    android:textSize="15pt"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/emart"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/button_purple"
+                    android:gravity="left"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="30dp"
+                    android:text="e-mart"
+                    android:textColor="@color/white"
+                    android:textSize="15pt"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:onClick="goShoppingMallCoupangActivity"
-                android:id="@+id/coupang"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/button_purple"
-                android:drawableRight="@drawable/coupang_resize"
-                android:elevation="20dp"
-                android:gravity="left"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="30dp"
-                android:text="쿠팡"
-                android:textColor="@color/white"
-                android:textSize="15pt"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/street_11"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="30dp"
-                android:gravity="left"
-                android:background="@drawable/button_purple"
-                android:text="11번가"
-                android:textColor="@color/white"
-                android:textSize="15pt"
-                android:textStyle="bold"
-                android:layout_marginBottom="25dp"/>
-
-            <Button
-                android:id="@+id/naver_shop"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="30dp"
-                android:gravity="left"
-                android:background="@drawable/button_purple"
-                android:text="네이버 쇼핑"
-                android:textColor="@color/white"
-                android:textSize="15pt"
-                android:textStyle="bold"
-                android:layout_marginBottom="25dp"/>
-
-            <Button
-                android:id="@+id/Gmarket"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="30dp"
-                android:gravity="left"
-                android:background="@drawable/button_purple"
-                android:text="G마켓"
-                android:textColor="@color/white"
-                android:textSize="15pt"
-                android:textStyle="bold"
-                android:layout_marginBottom="25dp"/>
-
-            <Button
-                android:id="@+id/auction"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="30dp"
-                android:gravity="left"
-                android:background="@drawable/button_purple"
-                android:text="옥션"
-                android:textColor="@color/white"
-                android:textSize="15pt"
-                android:textStyle="bold"
-                android:layout_marginBottom="25dp"/>
-
-            <Button
-                android:id="@+id/ssg"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="30dp"
-                android:gravity="left"
-                android:background="@drawable/button_purple"
-                android:text="SSG.com"
-                android:textColor="@color/white"
-                android:textSize="15pt"
-                android:textStyle="bold"
-                android:layout_marginBottom="25dp"/>
-
-            <Button
-                android:id="@+id/emart"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="30dp"
-                android:gravity="left"
-                android:background="@drawable/button_purple"
-                android:text="e-mart"
-                android:textColor="@color/white"
-                android:textSize="15pt"
-                android:textStyle="bold"
-                android:layout_marginBottom="25dp"/>
-
-        </LinearLayout>
-
-    </ScrollView>
-
+            android:layout_marginRight="10dp"
+            android:id="@+id/fab_btn"
+            android:layout_gravity="bottom|end"
+            app:fabCustomSize="75dp"
+            app:maxImageSize="40dp"
+            app:elevation="6dp"
+            app:backgroundTint="@color/purple"
+            android:src="@drawable/eyes">
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>
