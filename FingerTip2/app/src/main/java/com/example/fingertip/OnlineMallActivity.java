@@ -1,6 +1,7 @@
 package com.example.fingertip;
 
 import static android.speech.tts.TextToSpeech.ERROR;
+import static android.view.Gravity.END;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -186,8 +187,8 @@ public class OnlineMallActivity extends AppCompatActivity {
         mWebView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view,String url){
+                System.out.println("확인"+url);
                 //터치를 했을때 작동하는 메서드
-
                 mWebView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
@@ -419,8 +420,13 @@ public class OnlineMallActivity extends AppCompatActivity {
         else if(VoiceMsg.indexOf("사진") >-1){
 
 //            BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.imageView)).getDrawable();
-            image = getBitmapOfWebView(mWebView);
-
+            //image = getBitmapOfWebView(mWebView);
+            Bitmap tempimage = getBitmapOfWebView(mWebView);
+            image = Bitmap.createBitmap(tempimage
+                    , 0//X 시작위치 (원본의 4/1지점)
+                    , tempimage.getHeight() / 4 //Y 시작위치 (원본의 4/1지점)
+                    , tempimage.getWidth() // 넓이 (원본의 절반 크기)
+                    , tempimage.getHeight() / 2); // 높이 (원본의 절반 크기)
             String OCRresult = null;
             mTess.setImage(image);
 
@@ -429,6 +435,7 @@ public class OnlineMallActivity extends AppCompatActivity {
             //TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
             //OCRTextView.setText(OCRresult);
 
+            //OCRresult = OCRresult.substring(10,END);
             Intent intent = new Intent(OnlineMallActivity.this, OfflineTextActivity.class);
             intent.putExtra("ocr_text", OCRresult);
             startActivity(intent);
@@ -438,11 +445,14 @@ public class OnlineMallActivity extends AppCompatActivity {
     private Bitmap getBitmapOfWebView(final WebView webView){
         float scale = webView.getScale();
 //     webview
-        int webViewHeight = (int) (webView.getContentHeight()*scale);
+        int webViewHeight = (int) (webView.getContentHeight()*scale) / 3 ;
+        System.out.println(webViewHeight);
+
         Bitmap bitmap = Bitmap.createBitmap(webView.getWidth(),webViewHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
 //
         webView.draw(canvas);
+
         return bitmap;
     }
 

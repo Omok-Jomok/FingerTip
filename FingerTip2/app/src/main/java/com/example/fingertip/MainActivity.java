@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void speakChoose(String name){
-        tts.speak(name+"님 안녕하세요 온라인 오프라인 쇼핑을 선택해 주세요",TextToSpeech.QUEUE_FLUSH, null);
+        //tts.speak(name+"님 안녕하세요 온라인 오프라인 쇼핑을 선택해 주세요",TextToSpeech.QUEUE_FLUSH, null);
     }
 
     public void goOnlineMainActivity(View view){
